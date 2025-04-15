@@ -22,6 +22,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker stop e-commerce-app || true'
+                sh 'docker rm e-commerce-app || true'
+                sh 'docker run -d -p 5000:5000 --name e-commerce-app erenaltun/e-commerce-app:latest'
+            }
+        }
     }
 }
-
