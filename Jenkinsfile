@@ -1,4 +1,4 @@
-pipeline { 
+pipeline {
     agent any
 
     stages {
@@ -18,7 +18,11 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh '. venv/bin/activate && sonar-scanner -Dsonar.projectKey=e-commerce-app -Dsonar.host.url=http://10.25.155.206:9000 -Dsonar.login=sqp_00dc0840d8f43891d278f3a75badc3305c741502'
+                    // Sonar-scanner path'ini ekliyoruz
+                    sh '''
+                        export PATH=$PATH:/opt/sonar-scanner/bin
+                        . venv/bin/activate && sonar-scanner -Dsonar.projectKey=e-commerce-app -Dsonar.host.url=http://10.25.155.206:9000 -Dsonar.login=sqp_00dc0840d8f43891d278f3a75badc3305c741502
+                    '''
                 }
             }
         }
