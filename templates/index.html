@@ -5,7 +5,10 @@
     <h1>E-Ticaret Sitesi</h1>
     <ul>
         {% for product in products %}
-        <li>{{ product.name }} - {{ product.price }} TL</li>
+        <li>
+            {{ product.name }} - {{ product.price }} TL
+            <a href="/add/{{ product.id }}">Sepete Ekle</a>
+        </li>
         {% endfor %}
     </ul>
 </body>
