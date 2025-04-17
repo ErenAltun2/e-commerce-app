@@ -15,7 +15,7 @@ pipeline {
                 sh 'docker rm e-commerce-app || true'
                 sh 'docker network create my-network || true'
                 sh 'docker run -d -p 5000:5000 --name e-commerce-app --network my-network erenaltun/e-commerce-app:latest'
-                sh 'sleep 5'  # Konteynerin başlaması için bekle
+                sh 'sleep 5'  // Konteynerin başlaması için bekle
                 sh 'docker exec heuristic_keller curl --fail http://10.30.3.43:5000 || exit 1'  # Sağlık kontrolü
             }
         }
