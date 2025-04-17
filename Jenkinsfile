@@ -27,6 +27,12 @@ pipeline {
             }
         }
 
+        stage('UI Test') {
+            steps {
+                sh '. venv/bin/activate && python tests/test_ui.py'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 sh 'docker stop e-commerce-app || true'
