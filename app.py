@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from prometheus_client import Counter, generate_latest
+from flask import Flask, render_template, Response
+from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
 
 app = Flask(__name__)
 
@@ -28,7 +28,7 @@ def add_to_cart(product_id):
 # Prometheus için metrikler
 @app.route('/metrics')
 def metrics():
-    return generate_latest()  # Prometheus formatında metrikleri döndür
+    return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
