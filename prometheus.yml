@@ -1,0 +1,4 @@
+scrape_configs:
+  - job_name: "ecommerce"
+    static_configs:
+      - targets: ["10.30.3.43:5000"]
